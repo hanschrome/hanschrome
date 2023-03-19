@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '1 0 * * 1-5'
+    - cron: '1 0 * * *'
 
 jobs:
   update-readme:
@@ -18,9 +18,8 @@ jobs:
       - name: Update README
         run: |
           DAY=$(date +%A)
-          if [ "$DAY" = "Friday" ]; then DAY="weekend"; fi
 
-          echo "Have a nice $DAY! Let me introduce myself, I'm Hans Castro. We work on Citibox, for more information: [https://citibox.com/](https://citibox.com/)" > README.md
+          echo "Have a nice $DAY!" > README.md
           echo "- 👋 Hi, I’m Hans Castro Jiménez (@hanschrome)" >> README.md
           echo "- 👀 I’m interested in Web development, Hexagonal Architecture and Data Science" >> README.md
           echo "- 🌱 I’m currently learning Data Science Applied!" >> README.md
@@ -29,11 +28,11 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.email "hanscastro@citibox.com"
-          git config --global user.name "hanscastrocitibox"
+          git config --global user.email "hanscastroadmn@gmail.com"
+          git config --global user.name "hanschrome"
           git add README.md
           git commit -m "Update README with new message for $DAY"
-          git remote set-url origin https://github.com/hanscastrocitibox/hanscastrocitibox.git
+          git remote set-url origin https://github.com/hanschrome/hanschrome.git
           git push origin HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
