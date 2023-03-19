@@ -1,0 +1,39 @@
+name: Update README
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '1 0 * * 1-5'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update README
+        run: |
+          DAY=$(date +%A)
+          if [ "$DAY" = "Friday" ]; then DAY="weekend"; fi
+
+          echo "Have a nice $DAY! Let me introduce myself, I'm Hans Castro. We work on Citibox, for more information: [https://citibox.com/](https://citibox.com/)" > README.md
+          echo "- 👋 Hi, I’m Hans Castro Jiménez (@hanschrome)" >> README.md
+          echo "- 👀 I’m interested in Web development, Hexagonal Architecture and Data Science" >> README.md
+          echo "- 🌱 I’m currently learning Data Science Applied!" >> README.md
+          echo "- 💞️ I’m looking to collaborate on SolidJobs" >> README.md
+          echo "- 📫 How to reach me: anonimoautista.com" >> README.md
+
+      - name: Commit changes
+        run: |
+          git config --global user.email "hanscastro@citibox.com"
+          git config --global user.name "hanscastrocitibox"
+          git add README.md
+          git commit -m "Update README with new message for $DAY"
+          git remote set-url origin https://github.com/hanscastrocitibox/hanscastrocitibox.git
+          git push origin HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
