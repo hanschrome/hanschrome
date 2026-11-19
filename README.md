@@ -1,4 +1,4 @@
-Have a nice Wednesday!
+Have a nice Thursday!
 - 👋 Hi, I’m Hans Castro Jiménez (@hanschrome)
 - 👀 I’m interested in Web development, Hexagonal Architecture and Data Science
 - 🌱 I’m currently learning Data Science Applied!
